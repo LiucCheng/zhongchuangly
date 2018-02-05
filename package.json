@@ -1,0 +1,29 @@
+{
+  "name": "nodeapp",
+  "version": "0.0.1",
+  "description": "个人项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LC",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "connect-multiparty": "^2.1.0",
+    "cookie-parser": "^1.4.3",
+    "cookies": "^0.7.1",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "morgan": "^1.9.0",
+    "serve-favicon": "^2.4.5",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "mysql": "^2.15.0",
+    "querystring": "^0.2.0"
+  }
+}
