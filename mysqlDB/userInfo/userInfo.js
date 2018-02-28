@@ -1,6 +1,6 @@
 /**
- * Created by Administrator on 2018/1/26.
- * 连接池
+ * Created by Administrator on 2018/2/27.
+ * 链接数据库中用户信息的表格
  */
 var mysql = require("mysql");
 var pool = mysql.createPool({
@@ -17,7 +17,6 @@ var query = function (sql, callback) {
             conn.query(sql, function (qerr, vals, field) {
                 //释放连接
                 conn.release();
-                console.log(qerr, vals, field);
                 //事件驱动回调
                 callback(qerr,vals,field);
             })

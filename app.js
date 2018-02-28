@@ -10,6 +10,8 @@ const methodOverride = require("method-override");
 const Cookies = require("cookies");
 const checkData = require("./mysqlDB/mysqlAPI.js");
 
+const commonJS = require("./commonJS/commonJS.js");
+
 // 解析body的参数，form表单提交等 上传
 const multiparty = require("connect-multiparty");
 const multipartyMiddleware = multiparty();
@@ -22,6 +24,7 @@ const bodyParser = require("body-parser");
 
 // 数据库
 const mysql = require("mysql");
+const checkMysql = require("./mysqlDB/userInfo/register.js");
 
 const httpServer = http.createServer(app);
 const httpPORT = 8888;
@@ -52,26 +55,28 @@ app.use(function (req, res, next) {
     if (req.cookies.get("userInfo")){
         // 用户已经登录的情况
         // 再次验证用户信息
-       /* try {
+       try {
             req.userInfo = JSON.parse(req.cookies.get("userInfo"));
-            checkData.checkData(req.userInfo,function (data) {
-                if(data.isExist === 1){
-                    // 验证登录状态通过执行的代码
-
-                } else {
-                    // 验证不通过
-
-                }
-                next();
-            });
-        }catch (e){next();}*/
+           checkMysql.onlyFind(["uid",req.userInfo.uid],function (msg) {
+               // console.log(msg);
+               if (msg.isLogin === 1){
+                   // res.send();
+                   // 已经是登录状态
+                   next();
+               } else {
+                   // 登录状态的身份有问题
+                   next();
+               }
+           });
+           // console.log(req.userInfo);
+           // checkMysql
+        }catch (e){next();}
 
     } else {
         // 没有登录的情况
         next();
     }
 })
-
 
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof  req.body === 'object' && '_method' in req.body){
@@ -84,14 +89,12 @@ app.use(methodOverride(function (req, res) {
 
 // 静态文件
 app.use(express.static(path.join(__dirname, './webClient')));
-// require("./routes/resAPI.js");
+
+app.use("/", require("./routes/home.js"));
+app.use("/register", require("./routes/login/register.js"));
 app.use("/login", require("./routes/login/login.js"));
 app.use("/logout", require("./routes/login/logout.js"));
 
-
-// app.get("/", function (req, res, next) {
-//     // res.sendFile(path.join(__dirname, './webClient/test.html'));
-// });
 // 数据库链接成功
 
 httpServer.listen(httpPORT, function () {

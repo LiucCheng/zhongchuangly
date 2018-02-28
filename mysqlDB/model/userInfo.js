@@ -43,6 +43,7 @@ var createSql =
 
 var update = "INSERT INTO `userinfo` VALUES ('11111', 'nie的', 'dsfasdf', '1')";  // 插入数据
 
+
 pool.getConnection(function (err, connection) {
     function isExits() {
         connection.query(checkTableExist, function (err, rows, field) {

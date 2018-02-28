@@ -26,7 +26,7 @@ var mysql = require("mysql");
  * */
 
 var parameter = {
-        host: "localhost",
+        host: "39.108.230.52",
         user: "root",
         password: ".lc123456",
         database: "user_info"
@@ -164,7 +164,7 @@ function deleteColumn() {
 function find() {
     connectionMYSQL();
     var sql = "SELECT * FROM ?? WHERE ?? = ?";
-    var inserts = ['userinfo', 'id',2];
+    var inserts = ['userinfo', 'name',"lc"];
     sql = mysql.format(sql, inserts); // SELECT * FROM `userinfo` WHERE `id` = 1
     console.log(sql)
     connection.query(sql, function (err, rows,fields) {
@@ -176,8 +176,8 @@ function find() {
         result(rows)
     })
     connection.end();
-
 }
+find();
 // var sorter = 'date';
 // var sql    = 'SELECT * FROM posts ORDER BY ' + connection.escapeId('posts.' + sorter);
 
