@@ -1,6 +1,16 @@
 /**
  * Created by Administrator on 2018/2/27.
  */
+// remove value in array
+Array.prototype.removeItem = function(val) {
+    for(var i = 0;i < this.length;i++) {
+        if(this[i] == val) {
+            this.splice(i, 1);
+            break;
+        }
+    }
+}
+
 var tools = {};
 tools.dateFormat = function(date, format) {
     var o = {

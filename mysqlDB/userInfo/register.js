@@ -118,12 +118,10 @@ function checkLogin(data,oncall) {
                 loginRes.errMsg = "账号或密码错误";
                 loginRes.isSuccess = 0;
             }
-            oncall(loginRes);
         }
+        oncall(loginRes);
     });
 }
-
-
 
 // 查找是否已经注册了
 module.exports.find = find;

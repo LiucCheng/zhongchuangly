@@ -7,6 +7,7 @@ const login = require("../../mysqlDB/userInfo/register.js");
 
 route.post("/",function (req, res) {
     login.checkLogin(req.body, function (msg) {
+        console.log("登录",msg)
         if (msg.errCode === 0 || msg.isSuccess === 1){
             var token = new Date().getTime();
             req.cookies.set("userInfo", JSON.stringify({

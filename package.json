@@ -4,7 +4,8 @@
   "description": "个人项目",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "node": "node app.js"
   },
   "author": "LC",
   "license": "ISC",
@@ -16,6 +17,8 @@
     "cookie-parser": "^1.4.3",
     "cookies": "^0.7.1",
     "express": "^4.16.2",
+    "express-mysql-session": "^1.2.3",
+    "express-session": "^1.15.6",
     "method-override": "^2.3.10",
     "morgan": "^1.9.0",
     "serve-favicon": "^2.4.5",
